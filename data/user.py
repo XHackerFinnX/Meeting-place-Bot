@@ -7,20 +7,24 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 from config.config import config
 
-async def sql_users_add(id_users, fname, lname, tname):
+class DataBase():
     
-    try:
-        # Подключение к существующей базе данных
-        connection = psycopg2.connect(
+    connection = psycopg2.connect(
         host=config.POSTGRESQL_HOST.get_secret_value(),
         database=config.POSTGRESQL_DATABASE.get_secret_value(),
         user=config.POSTGRESQL_USER.get_secret_value(),
         password=config.POSTGRESQL_PASSWORD.get_secret_value(),
         port = config.POSTGRESQL_PORT.get_secret_value()
-        )
-        connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-        # Курсор для выполнения операций с базой данных
-        cursor = connection.cursor()
+    )
+    connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+    
+    cursor = connection.cursor()
+
+async def sql_users_add(id_users, fname, lname, tname):
+    
+    try:
+        connection = DataBase.connection
+        cursor = DataBase.cursor
         
         date_users = datetime.datetime.today()
         
