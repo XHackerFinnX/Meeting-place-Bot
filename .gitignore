@@ -2,3 +2,4 @@
 venv
 __pycache__
 log/message_history
+log/api_url.txt
