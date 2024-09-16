@@ -18,11 +18,9 @@ async def main() -> None:
     )
     
     print('Бот запущен!')
-    
     await log_message("System", "admin", "Запуск Бота!")
     
     await dp.start_polling(bot)
-
 
 if __name__ == "__main__":
     asyncio.run(main())
