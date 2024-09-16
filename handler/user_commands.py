@@ -5,7 +5,7 @@ from aiogram.filters import CommandStart, Command
 
 from log.log import log_message
 
-from data.user import sql_users_add
+from data.user import DataBase
 
 from handler.bot_messages import telegram_name_users
 
@@ -20,7 +20,7 @@ async def command_start_handler(message: Message) -> None:
     
     fname, lname, uname = await telegram_name_users(message)
     
-    await sql_users_add(message.from_user.id, fname, lname, uname)
+    await DataBase.sql_users_check(DataBase, message.from_user.id, fname, lname, uname)
     
     
 @router.message(Command(commands=['help']))
