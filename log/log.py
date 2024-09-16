@@ -16,6 +16,3 @@ async def log_message(sender: str, user_id: str, message: str):
     log_file_path = os.path.join(log_folder, f"user_{user_id}_chat_log.txt")
     with open(log_file_path, "a", encoding="utf-8") as log_file:
         log_file.write(log_entry + "\n")
-        
-        
-# https://api.telegram.org/bot7003174677:AAFcpQcAVLJB3myEr_0oWxyOzYlT7qQtsRs/getUpdates
